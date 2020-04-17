@@ -24,7 +24,7 @@ jobs:
     - name: Run a multi-line script
       env:
         SECRET_PREFIX: "A"
-        SECRET_NAME: "${{ env.SECRET_PREFIX }}_FRUIT_NAME"
+        SECRET_NAME: "${SECRET_PREFIX}_FRUIT_NAME"
       run: |
         echo "SECRET_NAME = $SECRET_NAME"
         SECRET_VALUE=${{ secrets[env.SECRET_NAME] }}

@@ -25,7 +25,7 @@ jobs:
       env:
         FRUIT_PREFIX: "A"
         SECRET_NAME: "${FRUIT_PREFIX}_FRUIT_NAME"
-        MY_SECRET_FRUIT: ${{ secrets.'{{ env.SECRET_NAME }}' }}
+        MY_SECRET_FRUIT: ${{ secrets.env.SECRET_NAME }}
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.

@@ -24,7 +24,8 @@ jobs:
     - name: Run a multi-line script
       env:
         FRUIT_PREFIX: "A"
-        MY_SECRET_FRUIT: ${{ secrets."${FRUIT_PREFIX}_FRUIT_NAME" }}
+        SECRET_NAME: "${FRUIT_PREFIX}_FRUIT_NAME"
+        MY_SECRET_FRUIT: ${{ secrets[$SECRET_NAME] }}
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.

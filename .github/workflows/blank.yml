@@ -23,8 +23,9 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
       env:
-        FRUIT_PREFIX: "A"
-        MY_SECRET_FRUIT: ${{ secrets."${FRUIT_PREFIX}_FRUIT_NAME" }}
+        SECRET_NAME: A_FRUIT_NAME
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        echo "SECRET_NAME = $SECRET_NAME"
+        echo "SECRET_NAME = ${{ env.SECRET_NAME }}"
+        SECRET_VALUE=${{ secrets[env.SECRET_NAME] }}
+        echo "SECRET_VALUE = $SECRET_VALUE"

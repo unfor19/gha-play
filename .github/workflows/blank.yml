@@ -27,13 +27,10 @@ jobs:
       - name: test-wsl
         shell: powershell
         run: |
-          [System.Environment]::OSVersion.Version
-          Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
           dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
           dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-          wsl --set-default-version 2
           .\Ubuntu\ubuntu1804.exe install --root
-        # wsl -u root -d Ubuntu-18.04
+          wsl -u root -d Ubuntu-18.04 -- ls
         # echo "i am $USER"
         # wsl -u root -d Ubuntu-18.04 -- apt-get update && apt-get install -y curl
         # wsl -u root -d Ubuntu-18.04 -- curl -L ifconfig.me

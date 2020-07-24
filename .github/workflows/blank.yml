@@ -6,7 +6,7 @@ name: CI
 # events but only for the master branch
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
   push:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -15,7 +15,16 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+      - name: download-ubuntu-wsl-distributiion
+        run: |
+          $url = "https://aka.ms/wsl-ubuntu-1804"
+          $output = "$PSScriptRoot\Ubuntu.appx"
+          $start_time = Get-Date
+          (New-Object System.Net.WebClient).DownloadFile($url, $output)
       - name: test-wsl
-        shell: cmd
-        run: | 
-          wsl
+        shell: powershell
+        run: |
+          Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+          Rename-Item .\Ubuntu.appx .\Ubuntu.zip
+          Expand-Archive .\Ubuntu.zip .\Ubuntu
+          ubuntu.exe

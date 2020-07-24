@@ -32,5 +32,7 @@ jobs:
           Expand-Archive .\Ubuntu.zip .\Ubuntu
           Get-ChildItem -Path .\
           Get-ChildItem -Path .\Ubuntu
+          wsl --set-default-version 2
           .\Ubuntu\ubuntu1804.exe config --default-user root
-          exit
+          apt-get update && apt-get install -y curl
+          curl ifconfig.me

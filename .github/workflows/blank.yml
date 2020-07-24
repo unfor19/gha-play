@@ -33,6 +33,7 @@ jobs:
           Get-ChildItem -Path .\
           Get-ChildItem -Path .\Ubuntu
           wsl --set-default-version 2
-          .\Ubuntu\ubuntu1804.exe config --default-user root
-          apt-get update && apt-get install -y curl
-          curl ifconfig.me
+          .\Ubuntu\ubuntu1804.exe install --root
+          wsl -u root -d Ubuntu-18.04 -- echo "I am g$USER"
+          wsl -u root -d Ubuntu-18.04 -- apt-get update && apt-get install -y curl
+          wsl -u root -d Ubuntu-18.04 -- curl ifconfig.me

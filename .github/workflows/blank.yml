@@ -28,3 +28,12 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
+  
+  windows-wsl:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: test-wsl
+        shell: cmd
+        run: | 
+          wsl

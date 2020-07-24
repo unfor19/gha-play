@@ -31,7 +31,7 @@ jobs:
         run: |
           Get-ChildItem -Path .\
           Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-          .\Ubuntu\ubuntu1804.exe --help
+          .\Ubuntu\ubuntu1804.exe -u root
           echo "i am g$USER"
         # wsl -u root -d Ubuntu-18.04
         # echo "i am $USER"

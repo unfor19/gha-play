@@ -15,14 +15,14 @@ jobs:
     runs-on: windows-latest
     steps:
       # - uses: actions/checkout@v2
-      - name: download-ubuntu-wsl-distributiion
-        shell: powershell # $output = "$PSScriptRoot\Ubuntu.appx"
-        run: |
-          $url = "https://aka.ms/wsl-ubuntu-1804"
-          $output = ".\Ubuntu.appx"
-          $start_time = Get-Date
-          (New-Object System.Net.WebClient).DownloadFile($url, $output)
-          Get-ChildItem -Path .\
+      # - name: download-ubuntu-wsl-distributiion
+      #   shell: powershell # $output = "$PSScriptRoot\Ubuntu.appx"
+      #   run: |
+      #     $url = "https://aka.ms/wsl-ubuntu-1804"
+      #     $output = ".\Ubuntu.appx"
+      #     $start_time = Get-Date
+      #     (New-Object System.Net.WebClient).DownloadFile($url, $output)
+      #     Get-ChildItem -Path .\
       - name: test-wsl
         shell: powershell
         run: |

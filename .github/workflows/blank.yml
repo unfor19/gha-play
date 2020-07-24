@@ -31,10 +31,9 @@ jobs:
         run: |
           Get-ChildItem -Path .\
           Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-          .\Ubuntu\ubuntu1804.exe
-          root
-          -p password
-          echo "i am g$USER"
+          Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+          wsl --set-default-version 2
+          .\Ubuntu\ubuntu1804.exe install --root
         # wsl -u root -d Ubuntu-18.04
         # echo "i am $USER"
         # wsl -u root -d Ubuntu-18.04 -- apt-get update && apt-get install -y curl

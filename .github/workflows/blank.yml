@@ -29,6 +29,7 @@ jobs:
           Get-ChildItem -Path .\
           Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
           choco install wsl-ubuntu-1804
+          wslconfig.exe /l
           wsl -u root -d Ubuntu-18.04 -- echo "I am g$USER"
         # wsl -u root -d Ubuntu-18.04 -- apt-get update && apt-get install -y curl
         # wsl -u root -d Ubuntu-18.04 -- curl -L ifconfig.me

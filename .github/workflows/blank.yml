@@ -32,4 +32,5 @@ jobs:
           Expand-Archive .\Ubuntu.zip .\Ubuntu
           Get-ChildItem -Path .\
           Get-ChildItem -Path .\Ubuntu
-          .\Ubuntu\ubuntu.exe
+          .\Ubuntu\ubuntu1804.exe
+          exit

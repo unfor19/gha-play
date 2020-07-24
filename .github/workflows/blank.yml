@@ -31,10 +31,11 @@ jobs:
         run: |
           Get-ChildItem -Path .\
           Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-          .\Ubuntu\ubuntu1804.exe install --root
           wsl --set-default-version 2
-          wsl -u root -d Ubuntu-18.04
-          echo "i am $USER"
+          .\Ubuntu\ubuntu1804.exe --help
+          echo "i am g$USER"
+        # wsl -u root -d Ubuntu-18.04
+        # echo "i am $USER"
         # wsl -u root -d Ubuntu-18.04 -- apt-get update && apt-get install -y curl
         # wsl -u root -d Ubuntu-18.04 -- curl -L ifconfig.me
 

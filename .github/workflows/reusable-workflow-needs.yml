@@ -22,6 +22,7 @@ env:
 jobs:
   reusable-workflow-job:
     name: ${{ inputs.TEST_NAME }} # Not allowed to use `env.VAR_NAME` context here, so using `inputs.INPUT_NAME` directly
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - name: Run Test

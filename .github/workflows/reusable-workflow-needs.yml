@@ -14,6 +14,10 @@ on:
         type: string
         required: true
         description: Command to execute in test
+      GIT_BRANCH:
+        type: string
+        required: true
+        description: Slug version of git branch, so feature/branch will be feature-branch
 
 env:
   TEST_TYPE: ${{ inputs.TEST_TYPE }}

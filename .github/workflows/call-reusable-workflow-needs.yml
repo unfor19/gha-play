@@ -1,0 +1,40 @@
+name: call-reusable-workflow-needs
+on:
+  push:
+    branches:
+      - reusable-workflow-needs
+
+jobs:
+  prepare:
+    name: Prepare
+    steps:
+      - uses: actions/checkout@v3
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v4
+      - name: Dynamic Outputs
+        id: dynamic-outputs
+        run: |
+          echo "GIT_BRANCH=${GITHUB_REF_SLUG}" >> $GITHUB_OUTPUT
+    outputs:
+      GIT_BRANCH: ${{ steps.dynamic-outputs.outputs.GIT_BRANCH }}
+
+  tests:
+    needs:
+      - prepare
+    strategy:
+      matrix:
+        include:
+          - TEST_NAME: Sanity
+            TEST_TYPE: sanity
+            TEST_EXECUTE_COMMAND: "echo lala some nice sanity test"
+          - TEST_NAME: Regression
+            TEST_TYPE: regression
+            TEST_EXECUTE_COMMAND: "echo what a great regression test"
+    uses: unfor19/gha-play/.github/workflows/reusable-workflow-needs.yml@reusable-workflow-needs
+    secrets: inherit
+    with:
+      TEST_NAME: ${{ matrix.TEST_NAME }}
+      TEST_TYPE: ${{ matrix.TEST_TYPE }}
+      TEST_EXECUTE_COMMAND: ${{ matrix.TEST_EXECUTE_COMMAND }}
+      # Gets stuck in pending because of the following line
+      GIT_BRANCH: ${{ needs.prepare.outputs.GIT_BRANCH }} # Using "needs.job" context corrupts the reusable workflow

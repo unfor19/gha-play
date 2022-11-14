@@ -37,5 +37,4 @@ jobs:
       TEST_NAME: ${{ matrix.TEST_NAME }}
       TEST_TYPE: ${{ matrix.TEST_TYPE }}
       TEST_EXECUTE_COMMAND: ${{ matrix.TEST_EXECUTE_COMMAND }}
-      # Gets stuck in pending because of the following line
-      GIT_BRANCH: ${{ needs.prepare.outputs.GIT_BRANCH }} # Using "needs.job" context corrupts the reusable workflow
+      GIT_BRANCH: ${{ needs.prepare.outputs.GIT_BRANCH }}

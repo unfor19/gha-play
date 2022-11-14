@@ -20,12 +20,13 @@ env:
   TEST_EXECUTE_COMMAND: ${{ inputs.TEST_EXECUTE_COMMAND }}
 
 jobs:
-  name: ${{ inputs.TEST_NAME }} # Not allowed to use `env.VAR_NAME` context here, so using `inputs.INPUT_NAME` directly
-  steps:
-    - uses: actions/checkout@v3
-    - name: Run Test
-      run: |
-        echo "Test type: ${{ env.TEST_TYPE }}"
-        echo "Running the command: ${{ env.TEST_EXECUTE_COMMAND }}"
-        ${{ env.TEST_EXECUTE_COMMAND }}
-        echo "Finished running test"
+  reusable-workflow-job:
+    name: ${{ inputs.TEST_NAME }} # Not allowed to use `env.VAR_NAME` context here, so using `inputs.INPUT_NAME` directly
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Test
+        run: |
+          echo "Test type: ${{ env.TEST_TYPE }}"
+          echo "Running the command: ${{ env.TEST_EXECUTE_COMMAND }}"
+          ${{ env.TEST_EXECUTE_COMMAND }}
+          echo "Finished running test"
